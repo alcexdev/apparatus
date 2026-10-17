@@ -1,0 +1,19 @@
+---
+all:
+  children:
+    proxmox:
+      vars:
+        ansible_become: true
+        ansible_become_method: sudo
+
+      hosts:
+        proxmox-node-01:
+          ansible_host: 192.0.2.11
+        proxmox-node-02:
+          ansible_host: 192.0.2.12
+        proxmox-node-03:
+          ansible_host: 192.0.2.13
+        proxmox-node-04:
+          ansible_host: 192.0.2.14
+        proxmox-node-05:
+          ansible_host: 192.0.2.15

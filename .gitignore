@@ -1,0 +1,33 @@
+# Local infrastructure inventory
+/inventory/hosts.yml
+/inventory/hosts.local.yml
+/inventory/group_vars/vault.yml
+incipe.sh
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Local Ansible settings
+/ansible.local.cfg
+
+# SSH credentials
+*.pem
+*.key
+id_rsa
+id_ed25519
+ansible_proxmox
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Ansible runtime
+*.retry
+*.retry.*
+/logs/
+
+# Editor and OS
+.DS_Store

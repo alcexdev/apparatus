@@ -1,0 +1,30 @@
+---
+- name: Proxmox cluster health inspection
+  hosts: proxmox
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Get Proxmox version
+      ansible.builtin.command: pveversion
+      register: pve_version
+      changed_when: false
+
+    - name: Check cluster status
+      ansible.builtin.command: pvecm status
+      register: cluster_status
+      changed_when: false
+
+    - name: Check available disk space
+      ansible.builtin.command: df -h
+      register: disk_status
+      changed_when: false
+
+    - name: Display summary
+      ansible.builtin.debug:
+        msg:
+          - "Node: {{ inventory_hostname }}"
+          - "Version: {{ pve_version.stdout }}"
+          - "Uptime: {{ ansible_facts['uptime_seconds'] }} seconds"
+          - "{{ cluster_status.stdout }}"
+          - "{{ disk_status.stdout }}"
